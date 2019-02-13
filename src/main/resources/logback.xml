@@ -10,4 +10,5 @@
   <root level="${LOGBACK_LOGGING_LEVEL:-INFO}">
     <appender-ref ref="STDOUT" />
   </root>
+  <logger name="org.testcontainers" level="DEBUG"/>
 </configuration>
