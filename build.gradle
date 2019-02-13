@@ -155,9 +155,7 @@ task debug(type: JavaExec) {
     classpath = project.tasks.run.classpath
 }
 
-task wrapper(type: Wrapper) {
-    description = 'Generates gradlew[.bat] scripts for faster execution'
-    gradleVersion = '4.9'
+wrapper.gradleVersion = '5.2.1'
 
 test {
     afterTest { desc, result ->
