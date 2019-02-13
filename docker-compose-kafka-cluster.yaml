@@ -21,6 +21,8 @@ services:
     build: .
     depends_on:
       - kafka
+    volumes:
+      - ./example-config:/etc/config/
     ports:
       - 80:80
     environment:
