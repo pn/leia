@@ -9,12 +9,22 @@ import java.io.File;
 public class IntegrationTestBaseRule {
 
     @ClassRule
-    public static DockerComposeContainer environment =
-        new DockerComposeContainer(new File("docker-compose-kafka-cluster.yaml"))
-        .withExposedService("zookeeper", 32181)
-        .withExposedService("kafka", 9092)
-        .withExposedService("leia", 80)
-        .withLocalCompose(false);
+    public static DockerComposeContainer environment;
+
+    static {
+        try {
+            environment =
+                new DockerComposeContainer(new File("docker-compose-kafka-cluster.yaml"))
+                    .withExposedService("zookeeper", 32181)
+                    .withExposedService("kafka", 9092)
+                    .withExposedService("leia", 80)
+                    .withLocalCompose(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace(new java.io.PrintStream(System.out));
+            throw e;
+        }
+    }
 }
 
 interface IntegrationTest {}
