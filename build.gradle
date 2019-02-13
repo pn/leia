@@ -158,11 +158,20 @@ task debug(type: JavaExec) {
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts for faster execution'
     gradleVersion = '4.9'
+
+test {
+    afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
 }
 
 task integrationTest(type: Test) {
+    dependsOn 'cleanTest'
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
+    afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
     useJUnit {
         includeCategories 'leia.IntegrationTest'
     }
