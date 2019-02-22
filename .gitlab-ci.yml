@@ -11,4 +11,4 @@ variables:
 test:
  image: gradle:5.0
  stage: test
- script: ./gradlew integrationTest
+ script: ./gradlew --stacktrace -i integrationTest
