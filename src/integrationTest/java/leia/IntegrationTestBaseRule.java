@@ -14,7 +14,7 @@ public class IntegrationTestBaseRule {
         .withExposedService("zookeeper", 32181)
         .withExposedService("kafka", 9092)
         .withExposedService("leia", 80)
-        .withLocalCompose(true);
+        .withLocalCompose(false);
 }
 
 interface IntegrationTest {}
